@@ -37,7 +37,7 @@ class _BasvurularState extends State<Basvurular> {
 
       if (userDoc.exists) {
         applicants.add(userDoc.data() as Map<String, dynamic>
-          ..['userId'] = userId); // userId'yi ekliyoruz
+          ..['userId'] = userId);
       }
     }
     return applicants;
