@@ -1,4 +1,4 @@
-import 'package:firebase_auth/firebase_auth.dart'; // Firebase Auth için gerekli import
+import 'package:firebase_auth/firebase_auth.dart'; 
 import 'package:flutter/material.dart';
 import 'package:tedarify/anaAkisSayfa.dart';
 import 'package:tedarify/kayitSayfa.dart';
@@ -14,9 +14,8 @@ class Girissayfa extends StatefulWidget {
 class _GirissayfaState extends State<Girissayfa> {
   var usernameController = TextEditingController();
   var passwordController = TextEditingController();
-  bool _isLoading = false; // Yükleniyor göstergesi için değişken
+  bool _isLoading = false;
 
-  // Firebase ile giriş yapma fonksiyonu
   Future<User?> signInWithEmailAndPassword(
       String email, String password) async {
     try {
@@ -74,7 +73,7 @@ class _GirissayfaState extends State<Girissayfa> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // Başlık
+                 
                   Text(
                     'Welcome!',
                     style: TextStyle(
@@ -112,7 +111,7 @@ class _GirissayfaState extends State<Girissayfa> {
                   ),
                   SizedBox(height: 20),
                   _isLoading
-                      ? CircularProgressIndicator() // Yükleniyor göstergesi
+                      ? CircularProgressIndicator() 
                       : ElevatedButton(
                           onPressed: () async {
                             setState(() {
@@ -130,7 +129,7 @@ class _GirissayfaState extends State<Girissayfa> {
                             });
 
                             if (user != null) {
-                              // Giriş başarılı, Ana akış sayfasına yönlendir
+                             
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
