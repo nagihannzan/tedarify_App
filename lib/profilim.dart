@@ -16,7 +16,7 @@ class _ProfileScreenState extends State<Profilim> {
   late Future<DocumentSnapshot> userProfile;
   late Future<QuerySnapshot> userSupplies;
   late Future<QuerySnapshot> userApplications;
-  late Future<QuerySnapshot> userSharings; // Yeni: Paylaşılan tedarikler
+  late Future<QuerySnapshot> userSharings; 
 
   @override
   void initState() {
@@ -24,7 +24,7 @@ class _ProfileScreenState extends State<Profilim> {
     userProfile = getUserProfile();
     userSupplies = getUserSupplies();
     userApplications = getUserApplications();
-    userSharings = getUserSharings(); // Yeni: Paylaşılan tedarikler
+    userSharings = getUserSharings(); 
   }
 
   Future<DocumentSnapshot> getUserProfile() async {
@@ -60,7 +60,6 @@ class _ProfileScreenState extends State<Profilim> {
     }
   }
 
-  // Yeni: Paylaşılan tedarikleri alma fonksiyonu
   Future<QuerySnapshot> getUserSharings() async {
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
@@ -68,7 +67,7 @@ class _ProfileScreenState extends State<Profilim> {
           .collection('users')
           .doc(user.uid)
           .collection(
-              'my_sharings') // mySharings koleksiyonundan verileri çekiyoruz
+              'my_sharings') 
           .get();
     } else {
       throw Exception("User is not logged in");
@@ -80,7 +79,7 @@ class _ProfileScreenState extends State<Profilim> {
       userProfile = getUserProfile();
       userSupplies = getUserSupplies();
       userApplications = getUserApplications();
-      userSharings = getUserSharings(); // Paylaşılan tedarikleri yenile
+      userSharings = getUserSharings(); 
     });
   }
 
@@ -106,7 +105,7 @@ class _ProfileScreenState extends State<Profilim> {
       ),
       body: Column(
         children: [
-          // Kullanıcı profili
+         
           FutureBuilder<DocumentSnapshot>(
             future: userProfile,
             builder: (context, snapshot) {
@@ -178,7 +177,7 @@ class _ProfileScreenState extends State<Profilim> {
               );
             },
           ),
-          // Menü
+          
           Row(
             children: [
               Expanded(
@@ -228,7 +227,7 @@ class _ProfileScreenState extends State<Profilim> {
                         : Colors.grey.shade200,
                   ),
                   child: Text(
-                    "My Sharings", // Yeni: "My Sharings" sekmesi
+                    "My Sharings", 
                     style: TextStyle(
                         color: selectedIndex == 2 ? Colors.white : koyuYazi,
                         fontSize: 18),
@@ -237,13 +236,13 @@ class _ProfileScreenState extends State<Profilim> {
               ),
             ],
           ),
-          // Sayfa içeriği
+          
           Expanded(
             child: selectedIndex == 0
                 ? _buildPosts()
                 : selectedIndex == 1
                     ? _buildApplications()
-                    : _buildSharings(), // Yeni: Paylaşılan tedarikler
+                    : _buildSharings(), 
           ),
         ],
       ),
@@ -252,7 +251,7 @@ class _ProfileScreenState extends State<Profilim> {
 
   Widget _buildSharings() {
     return FutureBuilder<QuerySnapshot>(
-      future: userSharings, // Paylaşılan tedarikler
+      future: userSharings, 
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(child: CircularProgressIndicator());
@@ -268,7 +267,6 @@ class _ProfileScreenState extends State<Profilim> {
 
         var sharingsData = snapshot.data!.docs;
 
-        // Verinin doğru alındığını kontrol et
         print('Sharings data: $sharingsData');
 
         return ListView.builder(
@@ -277,14 +275,13 @@ class _ProfileScreenState extends State<Profilim> {
             var sharing = sharingsData[index].data() as Map<String, dynamic>;
             var supplyId = sharing['supplyId'];
 
-            // Supply ID'yi doğru aldığınızı kontrol edin
             print('Supply ID: $supplyId');
 
             return FutureBuilder<DocumentSnapshot>(
               future: FirebaseFirestore.instance
-                  .collection('supplies') // supplies koleksiyonundan veriyi al
+                  .collection('supplies')
                   .doc(
-                      supplyId) // supplyId ile doğru tedarik verisini çekiyoruz
+                      supplyId) 
                   .get(),
               builder: (context, supplySnapshot) {
                 if (supplySnapshot.connectionState == ConnectionState.waiting) {
@@ -308,7 +305,6 @@ class _ProfileScreenState extends State<Profilim> {
                   date: supplyData['lastDate'] ?? 'No date',
                   buttonLabel: "Apply",
                   onButtonPressed: () {
-                    // Buton işlevini burada doldurabilirsiniz
                   },
                 );
               },
