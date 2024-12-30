@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "801308893124",
+    "project_id": "tedarify-ed661",
+    "storage_bucket": "tedarify-ed661.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:801308893124:android:7e006e70d45b8616cf4e91",
+        "android_client_info": {
+          "package_name": "com.example.tedarify"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBoIPj_d2W1kvDWTqro_DHqIhEUigbl0Ao"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
