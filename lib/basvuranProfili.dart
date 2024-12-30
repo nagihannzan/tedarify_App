@@ -26,7 +26,6 @@ class _BasvuranprofiliState extends State<Basvuranprofili> {
     _sharingsFuture = _fetchSharings();
   }
 
-  // Kullanıcı profil bilgilerini Firestore'dan alıyoruz
   Future<Map<String, dynamic>> _fetchUserProfile() async {
     DocumentSnapshot userDoc = await FirebaseFirestore.instance
         .collection('users')
@@ -40,7 +39,6 @@ class _BasvuranprofiliState extends State<Basvuranprofili> {
     }
   }
 
-  // Kullanıcının paylaştığı tedarikleri Firestore'dan alıyoruz
   Future<List<Map<String, dynamic>>> _fetchSupplies() async {
     QuerySnapshot suppliesSnapshot = await FirebaseFirestore.instance
         .collection('supplies')
@@ -54,13 +52,13 @@ class _BasvuranprofiliState extends State<Basvuranprofili> {
     return supplies;
   }
 
-  // Kullanıcının "paylaşım"larını Firestore'dan alıyoruz
+  
   Future<List<Map<String, dynamic>>> _fetchSharings() async {
     try {
       QuerySnapshot sharingsSnapshot = await FirebaseFirestore.instance
-          .collection('my_sharings') // Firestore'daki collection ismi
+          .collection('my_sharings') 
           .where('userId',
-              isEqualTo: widget.userId) // userId'ye göre filtreleme
+              isEqualTo: widget.userId) 
           .get();
 
       List<Map<String, dynamic>> sharings = [];
@@ -103,7 +101,7 @@ class _BasvuranprofiliState extends State<Basvuranprofili> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Kullanıcı Bilgileri
+                
                   Container(
                     color: Colors.purple.shade50,
                     child: Row(
@@ -112,7 +110,7 @@ class _BasvuranprofiliState extends State<Basvuranprofili> {
                           radius: 40,
                           backgroundColor: Colors.teal,
                           child: Text(
-                            user['name'][0], // Başvuranın adının ilk harfi
+                            user['name'][0], 
                             style: const TextStyle(color: Colors.white),
                           ),
                         ),
@@ -141,7 +139,6 @@ class _BasvuranprofiliState extends State<Basvuranprofili> {
 
                   const SizedBox(height: 20),
 
-                  // Sekme Seçimi
                   Row(children: [
                     Expanded(
                       child: TextButton(
@@ -183,7 +180,6 @@ class _BasvuranprofiliState extends State<Basvuranprofili> {
                     ),
                   ]),
 
-                  // Seçilen Sekme İçeriği
                   selectedIndex == 0
                       ? _buildSuppliesList()
                       : _buildSharingsList(),
@@ -255,7 +251,7 @@ class _BasvuranprofiliState extends State<Basvuranprofili> {
               future: FirebaseFirestore.instance
                   .collection('supplies')
                   .doc(sharing[
-                      'supplyId']) // supplyId ile ilgili tedariki alıyoruz
+                      'supplyId']) 
                   .get(),
               builder: (context, supplySnapshot) {
                 if (supplySnapshot.connectionState == ConnectionState.waiting) {
