@@ -10,7 +10,7 @@ class Basvuranprofili extends StatefulWidget {
 
   @override
   State<Basvuranprofili> createState() => _BasvuranprofiliState();
-}
+}  
 
 class _BasvuranprofiliState extends State<Basvuranprofili> {
   late Future<Map<String, dynamic>> _userProfileFuture;
